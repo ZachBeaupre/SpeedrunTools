@@ -96,7 +96,7 @@ public class Main {
         public static float time(int minutes, float seconds){
 
             return  (seconds) + (minutes * 60.0f);
-        }
+        }//it didnt push lol
     public static float time(int minutes, int seconds,int milliseconds) {
 
         //Since this program is intended to be used for Jet Moto 2 Speedrunning, this if statement ensures that millisecond values are treated properly.
