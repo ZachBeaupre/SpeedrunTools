@@ -36,7 +36,7 @@ public class Main {
                 public void actionPerformed(ActionEvent e) {
 
 
-                    double result = getTimes(m1,s1,ms1,m2,s2,ms2,0); // kinda annoyed i had to make a funciton with a billion parameters just because I wasnt in the right scope to access the ui elements.
+                    float result = getTimes(m1,s1,ms1,m2,s2,ms2,0); // kinda annoyed i had to make a funciton with a billion parameters just because I wasnt in the right scope to access the ui elements.
 //                    System.out.printf("%.1f%n",result);
 //                    System.out.printf("%s%n",timeSTR(result));
                     output.setText(timeSTR(result));
@@ -50,7 +50,7 @@ public class Main {
                 @Override
                 public void actionPerformed(ActionEvent e) {
 
-                   double result = getTimes(m1,s1,ms1,m2,s2,ms2,1);
+                   float result = getTimes(m1,s1,ms1,m2,s2,ms2,1);
 //                    System.out.printf("%.1f%n",result);
 //                    System.out.printf("%s%n",timeSTR(result));
                     output.setText(timeSTR(result));
@@ -93,25 +93,25 @@ public class Main {
             frame.setVisible(true);
 
         }
-        public static double time(int minutes, double seconds){
+        public static float time(int minutes, float seconds){
 
-            return  (seconds) + (minutes * 60.0);
+            return  (seconds) + (minutes * 60.0f);
         }
-    public static double time(int minutes, int seconds,int milliseconds) {
+    public static float time(int minutes, int seconds,int milliseconds) {
 
         //Since this program is intended to be used for Jet Moto 2 Speedrunning, this if statement ensures that millisecond values are treated properly.
         //before if you were to enter : 100 in the milliseconds slot, it would divide by 10 and then still be above 1 so it would become 1 second
         if (milliseconds == 0) {
-            return (double) (seconds) + (minutes * 60.0);
+            return (float) (seconds) + (minutes * 60.0f);
         } else {
-            return (double) (seconds) + (minutes * 60.0) + (milliseconds / Math.pow(10.0, (int)Math.log10(milliseconds))) / 10.0;
+            return (float)((seconds) + (minutes * 60.0f) + (milliseconds / Math.pow(10.0f, (int)Math.log10(milliseconds))) / 10.0f);
         }
 
     }
 
 
     /**
-     * timeSTR takes in a double value that represents seconds, and then converts and
+     * timeSTR takes in a float value that represents seconds, and then converts and
      * prints out in this format
      * M = minutes
      * S = seconds
@@ -120,7 +120,7 @@ public class Main {
      * MM:SS.m
      *
     * */
-        public static String timeSTR(double seconds){
+        public static String timeSTR(float seconds){
             seconds = Math.abs(seconds); //prevents the output from looking like this 0:0-1.0   its disgusting lol
             int minutes = (int)(seconds / 60.0);
             seconds -= minutes * 60;
@@ -133,7 +133,7 @@ public class Main {
 
             return String.format("%d:" + (((int)seconds > 9) ? "":"0") + "%d.%d", minutes, (int)seconds, milliseconds);
         }
-    public static double getTimes(JTextField m1, JTextField s1, JTextField ms1, JTextField m2, JTextField s2, JTextField ms2, int operator){
+    public static float getTimes(JTextField m1, JTextField s1, JTextField ms1, JTextField m2, JTextField s2, JTextField ms2, int operator){
 
             //Function was added to make sure that I don't break the logic behind the time operations.
         //also now I can account for cases where the text field is blank or something, so yippee I guess...
@@ -141,14 +141,14 @@ public class Main {
         try{T1_1 = Integer.parseInt(m1.getText());} catch(NumberFormatException e){T1_1 = 0;}
         try{T1_2 = Integer.parseInt(s1.getText());} catch(NumberFormatException e){T1_2 = 0;}
         try{T1_3 = Integer.parseInt(ms1.getText());} catch(NumberFormatException e){T1_3 = 0;}
-        //double T1 = time(T1_1, T1_2+(T1_3/10.0));
-        double T1 = time(T1_1, T1_2,(T1_3));
+        //float T1 = time(T1_1, T1_2+(T1_3/10.0));
+        float T1 = time(T1_1, T1_2,(T1_3));
 
         int T2_1, T2_2, T2_3;
         try{T2_1 = Integer.parseInt(m2.getText());} catch(NumberFormatException e){T2_1 = 0;}
         try{T2_2 = Integer.parseInt(s2.getText());} catch(NumberFormatException e){T2_2 = 0;}
         try{T2_3 = Integer.parseInt(ms2.getText());} catch(NumberFormatException e){T2_3 = 0;}
-        double T2 = time(T2_1, T2_2, (T2_3));
+        float T2 = time(T2_1, T2_2, (T2_3));
 
 
 if(operator == 0) {
